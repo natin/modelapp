@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style>
+
+<head>
+    <title>Dangerous Driving Behavior Classification Model</title>
+</head>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Input Sensors values:</legend>
+        Accuracy:
+        <input name="accuracy" type="number" step="any" required>
+        <br>
+        <br> Bearing:
+        <input name="bearing" type="number" step="any" required>
+        <br>
+        <br> AccelerometerX:
+        <input name="accX" type="number" step="any" required>
+        <br>
+	<br> AccelerometerY:
+        <input name="accY" type="number" step="any" required>
+        <br>
+        <br> AccelerometerZ:
+        <input name="accZ" type="number" step="any" required>
+        <br>
+	<br> GyroscopeX:
+        <input name="gyroX" type="number" step="any" required>
+        <br>
+        <br> GyroscopeY:
+        <input name="gyroY" type="number" step="any" required>
+        <br>
+	<br> GyroscopeZ:
+        <input name="gyroZ" type="number" step="any" required>
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+    	{% for variable, value in original_input.items() %}
+    		<b>{{ variable }}</b> : {{ value }}
+    	{% endfor %}
+		<br>
+    	<br> Your Driving Style:
+   		<p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+
+</html>
